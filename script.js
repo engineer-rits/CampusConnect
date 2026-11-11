@@ -637,7 +637,7 @@ function openEventModal(id) {
   currentModalEvent = event;
 
   document.getElementById("modalCategory").textContent =
-    `${event.category.toUpperCase()} · EVENT EXAMPLE`;
+    {event.category.toUpperCase()};
 
   document.getElementById("modalTitle").textContent = event.title;
 
