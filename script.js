@@ -1,0 +1,4 @@
+const menu=document.querySelector('.menu-toggle'),links=document.querySelector('.nav-links');menu.addEventListener('click',()=>links.classList.toggle('open'));
+document.querySelectorAll('.filter').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.filter').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.event-card').forEach(card=>card.classList.toggle('hidden',btn.dataset.filter!=='all'&&card.dataset.category!==btn.dataset.filter));}));
+const toast=document.querySelector('.toast');let toastTimer;function notify(message){toast.textContent=message;toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),2600)}
+document.querySelectorAll('.event-link').forEach(btn=>btn.addEventListener('click',()=>notify(`You're interested in ${btn.dataset.event}! (Demo interaction)`)));
