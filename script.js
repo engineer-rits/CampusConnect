@@ -1,14 +1,14 @@
-
-// ---------------------------------------------
+// =============================================
 // UNIVERSE — CAMPUS DISCOVERY WEBSITE
-// ---------------------------------------------
+// =============================================
 
 const OFFICIAL_PORTAL = "https://studentsocieties.thapar.edu/";
 
-// ---------------------------------------------
+// =============================================
 // 1. SAMPLE EVENT DATA
-// Replace these examples with verified announcements.
-// ---------------------------------------------
+// These are illustrative examples, not confirmed
+// TIET announcements.
+// =============================================
 
 const events = [
   {
@@ -85,11 +85,11 @@ const events = [
   }
 ];
 
-// ---------------------------------------------
-// 2. TIET SOCIETY AND CLUB DIRECTORY
-// Names and descriptions are based on the official
-// TIET student activities portal.
-// ---------------------------------------------
+// =============================================
+// 2. CLUB AND SOCIETY DIRECTORY
+// Verify current names and joining information
+// through the official TIET student portal.
+// =============================================
 
 const clubs = [
   {
@@ -214,9 +214,9 @@ const clubs = [
   }
 ];
 
-// ---------------------------------------------
+// =============================================
 // 3. OPPORTUNITIES
-// ---------------------------------------------
+// =============================================
 
 const opportunities = [
   {
@@ -242,9 +242,9 @@ const opportunities = [
   }
 ];
 
-// ---------------------------------------------
+// =============================================
 // 4. BROWSER STORAGE
-// ---------------------------------------------
+// =============================================
 
 const STORAGE_KEY = "universe_tiet_saved_v1";
 
@@ -269,7 +269,26 @@ let currentModalEvent = null;
 let toastTimer;
 
 function saveStorage() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
+  } catch (error) {
+    notify("Your browser could not save this change.");
+  }
+}
+
+// Escape text before inserting data into HTML.
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, character => {
+    const entities = {
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    };
+
+    return entities[character];
+  });
 }
 
 function notify(message) {
@@ -283,42 +302,46 @@ function notify(message) {
 
   toastTimer = setTimeout(() => {
     toast.classList.remove("show");
-  }, 2500);
+  }, 2600);
 }
 
-// ---------------------------------------------
+// =============================================
 // 5. MOBILE NAVIGATION
-// ---------------------------------------------
+// =============================================
 
 const menuButton = document.querySelector(".menu-toggle");
 const navLinks = document.querySelector(".nav-links");
 
-menuButton.addEventListener("click", () => {
-  const isOpen = navLinks.classList.toggle("open");
-  menuButton.setAttribute("aria-expanded", String(isOpen));
-  menuButton.textContent = isOpen ? "×" : "☰";
-});
+if (menuButton && navLinks) {
+  menuButton.addEventListener("click", () => {
+    const isOpen = navLinks.classList.toggle("open");
 
-navLinks.querySelectorAll("a").forEach(link => {
-  link.addEventListener("click", () => {
-    navLinks.classList.remove("open");
-    menuButton.setAttribute("aria-expanded", "false");
-    menuButton.textContent = "☰";
+    menuButton.setAttribute("aria-expanded", String(isOpen));
+    menuButton.textContent = isOpen ? "×" : "☰";
   });
-});
 
-// ---------------------------------------------
+  navLinks.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("open");
+      menuButton.setAttribute("aria-expanded", "false");
+      menuButton.textContent = "☰";
+    });
+  });
+}
+
+// =============================================
 // 6. EVENT EXPLORER
-// ---------------------------------------------
+// =============================================
 
 const eventGrid = document.getElementById("eventGrid");
+const globalSearchInput = document.getElementById("globalSearch");
+const eventSort = document.getElementById("eventSort");
 
 function renderEvents() {
-  const searchTerm = document
-    .getElementById("globalSearch")
-    .value.trim().toLowerCase();
+  if (!eventGrid) return;
 
-  const sortMode = document.getElementById("eventSort").value;
+  const searchTerm = globalSearchInput.value.trim().toLowerCase();
+  const sortMode = eventSort.value;
 
   let filtered = events.filter(event => {
     const matchesCategory =
@@ -360,27 +383,30 @@ function renderEvents() {
       <article class="event-card">
         <div class="event-art ${event.art}">
           <div class="event-date">TIET <b>EVENT</b></div>
-          <div class="event-graphic">${event.icon}</div>
-          <div class="art-label">${event.label}</div>
+          <div class="event-graphic">${escapeHTML(event.icon)}</div>
+          <div class="art-label">${escapeHTML(event.label)}</div>
         </div>
 
         <div class="event-info">
           <div class="event-meta">
-            ${event.category} <span>✳</span> ${event.date}
+            ${escapeHTML(event.category)}
+            <span>✳</span>
+            ${escapeHTML(event.date)}
           </div>
 
-          <h3>${event.title}</h3>
-          <p>${event.description}</p>
+          <h3>${escapeHTML(event.title)}</h3>
+          <p>${escapeHTML(event.description)}</p>
 
           <div class="event-actions">
-            <button class="event-details" data-details="${event.id}">
+            <button class="event-details" data-details="${escapeHTML(event.id)}">
               View details <span>↗</span>
             </button>
 
             <button
               class="save-btn ${isSaved ? "saved" : ""}"
-              data-save-event="${event.id}"
+              data-save-event="${escapeHTML(event.id)}"
               aria-label="${isSaved ? "Remove bookmark" : "Bookmark event"}"
+              aria-pressed="${isSaved}"
             >
               ${isSaved ? "★ Saved" : "☆ Save"}
             </button>
@@ -404,18 +430,19 @@ document.querySelectorAll(".filter").forEach(button => {
   });
 });
 
-document.getElementById("eventSort").addEventListener("change", renderEvents);
+eventSort.addEventListener("change", renderEvents);
 
-// ---------------------------------------------
-// 7. CLUB DIRECTORY
-// ---------------------------------------------
+// =============================================
+// 7. CLUB DIRECTORY — CARD LAYOUT
+// =============================================
 
 const clubList = document.getElementById("clubList");
+const clubSearchInput = document.getElementById("clubSearch");
 
 function renderClubs() {
-  const searchTerm = document
-    .getElementById("clubSearch")
-    .value.trim().toLowerCase();
+  if (!clubList) return;
+
+  const searchTerm = clubSearchInput.value.trim().toLowerCase();
 
   const filtered = clubs.filter(club => {
     const matchesCategory =
@@ -431,7 +458,7 @@ function renderClubs() {
   if (!filtered.length) {
     clubList.innerHTML = `
       <div class="club-empty">
-        No matching organisations found. Try another search.
+        No matching organisations found. Try another search or category.
       </div>
     `;
   } else {
@@ -439,24 +466,29 @@ function renderClubs() {
       const isSaved = saved.clubs.includes(club.name);
 
       return `
-        <div class="club-item">
-          <div class="club-icon">${club.icon}</div>
+        <article class="club-item">
 
-          <div class="club-item-main">
-            <b>${club.name}</b>
-            <small>${club.description}</small>
+          <div class="club-card-top">
+            <div class="club-icon">${escapeHTML(club.icon)}</div>
+            <span class="club-category">${escapeHTML(club.category)}</span>
           </div>
 
-          <div class="club-category">${club.category}</div>
+          <h3>${escapeHTML(club.name)}</h3>
 
-          <button
-            class="save-btn ${isSaved ? "saved" : ""}"
-            data-save-club="${club.name}"
-            aria-label="${isSaved ? "Remove saved club" : "Save club"}"
-          >
-            ${isSaved ? "★" : "☆"}
-          </button>
-        </div>
+          <p>${escapeHTML(club.description)}</p>
+
+          <div class="club-save-row">
+            <button
+              class="save-btn ${isSaved ? "saved" : ""}"
+              data-save-club="${escapeHTML(club.name)}"
+              aria-label="${isSaved ? "Remove saved club" : "Save club"}"
+              aria-pressed="${isSaved}"
+            >
+              ${isSaved ? "★ Saved" : "☆ Save club"}
+            </button>
+          </div>
+
+        </article>
       `;
     }).join("");
   }
@@ -478,27 +510,27 @@ document.querySelectorAll(".club-filter").forEach(button => {
   });
 });
 
-document.getElementById("clubSearch").addEventListener("input", renderClubs);
+clubSearchInput.addEventListener("input", renderClubs);
 
-// ---------------------------------------------
+// =============================================
 // 8. OPPORTUNITY CARDS
-// ---------------------------------------------
+// =============================================
 
 document.getElementById("opportunityGrid").innerHTML =
   opportunities.map(item => `
     <article class="opportunity-card">
-      <div class="opportunity-icon">${item.icon}</div>
-      <h3>${item.title}</h3>
-      <p>${item.description}</p>
+      <div class="opportunity-icon">${escapeHTML(item.icon)}</div>
+      <h3>${escapeHTML(item.title)}</h3>
+      <p>${escapeHTML(item.description)}</p>
       <a href="${item.link}" target="_blank" rel="noopener">
-        ${item.linkText} ↗
+        ${escapeHTML(item.linkText)} ↗
       </a>
     </article>
   `).join("");
 
-// ---------------------------------------------
+// =============================================
 // 9. SAVE / REMOVE BOOKMARKS
-// ---------------------------------------------
+// =============================================
 
 function toggleSavedEvent(id) {
   if (saved.events.includes(id)) {
@@ -512,6 +544,7 @@ function toggleSavedEvent(id) {
   saveStorage();
   renderEvents();
   renderDashboard();
+  updateModalSaveButton();
 }
 
 function toggleSavedClub(name) {
@@ -528,18 +561,24 @@ function toggleSavedClub(name) {
   renderDashboard();
 }
 
-// Event delegation: handles buttons even after cards are re-rendered.
+// Event delegation handles buttons even after cards are re-rendered.
 document.addEventListener("click", event => {
-  const eventSaveButton = event.target.closest("[data-save-event]");
-  const clubSaveButton = event.target.closest("[data-save-club]");
-  const detailsButton = event.target.closest("[data-details]");
+  const target = event.target;
+
+  if (!target.closest) return;
+
+  const eventSaveButton = target.closest("[data-save-event]");
+  const clubSaveButton = target.closest("[data-save-club]");
+  const detailsButton = target.closest("[data-details]");
 
   if (eventSaveButton) {
     toggleSavedEvent(eventSaveButton.dataset.saveEvent);
+    return;
   }
 
   if (clubSaveButton) {
     toggleSavedClub(clubSaveButton.dataset.saveClub);
+    return;
   }
 
   if (detailsButton) {
@@ -547,9 +586,9 @@ document.addEventListener("click", event => {
   }
 });
 
-// ---------------------------------------------
+// =============================================
 // 10. PERSONAL DASHBOARD
-// ---------------------------------------------
+// =============================================
 
 const savedList = document.getElementById("savedList");
 
@@ -592,13 +631,14 @@ function renderDashboard() {
   savedList.innerHTML = items.map(item => `
     <div class="saved-item">
       <div>
-        <b>${item.title}</b>
-        <small>${item.subtitle}</small>
+        <b>${escapeHTML(item.title)}</b>
+        <small>${escapeHTML(item.subtitle)}</small>
       </div>
+
       <button
         class="remove-save"
         data-remove-type="${activeDashboardTab}"
-        data-remove-id="${item.id}"
+        data-remove-id="${escapeHTML(item.id)}"
       >
         Remove
       </button>
@@ -635,12 +675,14 @@ savedList.addEventListener("click", event => {
   renderEvents();
   renderClubs();
   renderDashboard();
+  updateModalSaveButton();
+
   notify("Saved item removed.");
 });
 
-// ---------------------------------------------
+// =============================================
 // 11. EVENT DETAIL POPUP
-// ---------------------------------------------
+// =============================================
 
 const modal = document.getElementById("eventModal");
 
@@ -654,6 +696,7 @@ function openEventModal(id) {
     `${event.category.toUpperCase()} · EVENT EXAMPLE`;
 
   document.getElementById("modalTitle").textContent = event.title;
+
   document.getElementById("modalDescription").textContent =
     `${event.description} Date: ${event.date}. Venue: ${event.venue}.`;
 
@@ -661,6 +704,7 @@ function openEventModal(id) {
 
   modal.classList.add("open");
   modal.setAttribute("aria-hidden", "false");
+
   document.getElementById("modalClose").focus();
 }
 
@@ -698,37 +742,21 @@ document.addEventListener("keydown", event => {
 document.getElementById("modalSave").addEventListener("click", () => {
   if (!currentModalEvent) return;
 
-  const id = currentModalEvent.id;
-
-  if (saved.events.includes(id)) {
-    saved.events = saved.events.filter(item => item !== id);
-    notify("Event removed from your saved list.");
-  } else {
-    saved.events.push(id);
-    notify("Event saved to your dashboard!");
-  }
-
-  saveStorage();
-  renderEvents();
-  renderDashboard();
-  updateModalSaveButton();
+  toggleSavedEvent(currentModalEvent.id);
 });
 
-// ---------------------------------------------
+// =============================================
 // 12. GLOBAL SEARCH
-// ---------------------------------------------
+// =============================================
 
 function runGlobalSearch() {
-  const searchTerm = document
-    .getElementById("globalSearch")
-    .value.trim();
+  const searchTerm = globalSearchInput.value.trim();
 
   if (!searchTerm) {
     notify("Type something to search for.");
     return;
   }
 
-  // Reset event filter so matching results are not hidden.
   activeEventFilter = "all";
 
   document.querySelectorAll(".filter").forEach(button => {
@@ -737,8 +765,7 @@ function runGlobalSearch() {
 
   renderEvents();
 
-  // Search clubs using the same term.
-  document.getElementById("clubSearch").value = searchTerm;
+  clubSearchInput.value = searchTerm;
   activeClubFilter = "all";
 
   document.querySelectorAll(".club-filter").forEach(button => {
@@ -750,37 +777,44 @@ function runGlobalSearch() {
 
   renderClubs();
 
+  const term = searchTerm.toLowerCase();
+
   const matchingEvents = events.filter(event =>
     `${event.title} ${event.category} ${event.description}`
       .toLowerCase()
-      .includes(searchTerm.toLowerCase())
+      .includes(term)
   ).length;
 
   const matchingClubs = clubs.filter(club =>
     `${club.name} ${club.category} ${club.description}`
       .toLowerCase()
-      .includes(searchTerm.toLowerCase())
+      .includes(term)
   ).length;
 
   document.getElementById("searchHint").textContent =
     `Found ${matchingEvents} matching event(s) and ${matchingClubs} matching organisation(s).`;
 
-  document.getElementById("events").scrollIntoView({
+  // Take the user to the section containing matching results.
+  const destination = matchingEvents > 0
+    ? document.getElementById("events")
+    : document.getElementById("clubs");
+
+  destination.scrollIntoView({
     behavior: "smooth"
   });
 }
 
 document.getElementById("searchButton").addEventListener("click", runGlobalSearch);
 
-document.getElementById("globalSearch").addEventListener("keydown", event => {
+globalSearchInput.addEventListener("keydown", event => {
   if (event.key === "Enter") {
     runGlobalSearch();
   }
 });
 
-// ---------------------------------------------
+// =============================================
 // 13. INITIAL PAGE RENDER
-// ---------------------------------------------
+// =============================================
 
 renderEvents();
 renderClubs();
