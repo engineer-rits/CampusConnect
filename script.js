@@ -13,46 +13,38 @@ const OFFICIAL_PORTAL = "https://studentsocieties.thapar.edu/";
 const events = [
   {
     id: "event-1",
-    title: "Campus Open Mic",
+    title: "Ruhaniyat",
     category: "culture",
-    date: "DATE TO BE ANNOUNCED",
-    venue: "Venue to be announced",
     icon: "♫",
     art: "art-pink",
     label: "EXPRESS YOURSELF",
-    description: "An example of a campus open-mic experience where students can share music, poetry, comedy and other creative performances.",
+    description: "A blissful experience where students can share music, poetry, comedy and other creative performances.",
     featured: true
   },
   {
     id: "event-2",
-    title: "Ideas to Impact",
+    title: "RoboWars",
     category: "learning",
-    date: "DATE TO BE ANNOUNCED",
-    venue: "Venue to be announced",
     icon: "✧",
     art: "art-blue",
     label: "LEARN SOMETHING NEW",
-    description: "An example of a student innovation session featuring ideas, discussions, collaborative learning and creative problem-solving.",
+    description: "An event featuring robots sparring with each other",
     featured: true
   },
   {
     id: "event-3",
-    title: "The Big Board Game",
+    title: "Readathon",
     category: "fun",
-    date: "DATE TO BE ANNOUNCED",
-    venue: "Venue to be announced",
-    icon: "♟",
+    icon: "📖",
     art: "art-yellow",
-    label: "PLAY TOGETHER",
-    description: "An example of a relaxed campus activity where students can meet new people and enjoy games together.",
+    label: "READ TOGETHER",
+    description: "An example of a relaxed campus activity where students can meet new people and read books together.",
     featured: true
   },
   {
     id: "event-4",
     title: "Green Campus Day",
     category: "community",
-    date: "DATE TO BE ANNOUNCED",
-    venue: "Venue to be announced",
     icon: "✿",
     art: "art-green",
     label: "MAKE A DIFFERENCE",
@@ -61,26 +53,22 @@ const events = [
   },
   {
     id: "event-5",
-    title: "Creative Skills Workshop",
+    title: "Cybersecurity Workshop",
     category: "learning",
-    date: "DATE TO BE ANNOUNCED",
-    venue: "Venue to be announced",
     icon: "✎",
     art: "art-pink",
     label: "CREATE & COLLABORATE",
-    description: "An example of a hands-on workshop where students can explore a creative skill and learn alongside their peers.",
+    description: "A hands-on workshop where students can explore cybersecurity and learn alongside their peers.",
     featured: false
   },
   {
     id: "event-6",
-    title: "Campus Culture Meet",
+    title: "Wild West Showdown",
     category: "culture",
-    date: "DATE TO BE ANNOUNCED",
-    venue: "Venue to be announced",
     icon: "✺",
     art: "art-blue",
     label: "CELEBRATE CAMPUS",
-    description: "An example of a cultural gathering celebrating student interests, performances and campus community.",
+    description: "A cultural gathering celebrating student interests, performances and campus community.",
     featured: false
   }
 ];
@@ -93,121 +81,121 @@ const events = [
 
 const clubs = [
   {
-    name: "Creative Computing Society (CCS)",
-    category: "Technical",
-    icon: "⌘",
-    description: "Technology, coding workshops and innovation."
-  },
-  {
-    name: "Mechatronics and Robotics Society (MARS)",
-    category: "Technical",
-    icon: "⚙",
-    description: "Robotics, automation and engineering projects."
-  },
-  {
-    name: "ACM Computing Chapter",
-    category: "Technical",
-    icon: "⌘",
-    description: "Computing workshops, seminars and technical learning."
-  },
-  {
-    name: "Microsoft Learn Student Chapter",
-    category: "Technical",
-    icon: "▦",
-    description: "Technical training, learning and project development."
-  },
-  {
-    name: "OWASP Student Chapter",
+    name: "OWASP Student Chapter:",
     category: "Technical",
     icon: "◈",
     description: "Cybersecurity awareness and secure technology."
   },
   {
-    name: "Thapar Mathematical Society",
+    name: "Mechatronics and Robotics Society (MARS):",
+    category: "Technical",
+    icon: "⚙",
+    description: "Robotics, automation and engineering projects."
+  },
+  {
+    name: "ACM Computing Chapter:",
+    category: "Technical",
+    icon: "⌘",
+    description: "Computing workshops, seminars and technical learning."
+  },
+  {
+    name: "Microsoft Learn Student Chapter:",
+    category: "Technical",
+    icon: "▦",
+    description: "Technical training, learning and project development."
+  },
+  {
+    name: "Creative Computing Society (CCS):",
+    category: "Technical",
+    icon: "⌘",
+    description: "Technology, coding workshops and innovation."
+  },
+  {
+    name: "Thapar Mathematical Society:",
     category: "Technical",
     icon: "∑",
     description: "Mathematics, problem-solving and academic activities."
   },
   {
-    name: "Music and Dramatic Society (MUDRA)",
+    name: "Music and Dramatic Society (MUDRA):",
     category: "Cultural",
     icon: "♫",
     description: "Music, theatre, drama and performing arts."
   },
   {
-    name: "Fine Arts and Photography Society (FAPS)",
+    name: "Fine Arts and Photography Society (FAPS):",
     category: "Cultural",
     icon: "✿",
     description: "Art, photography and visual creativity."
   },
   {
-    name: "Dance Club NOX",
+    name: "Dance Club NOX:",
     category: "Cultural",
     icon: "✧",
     description: "Dance workshops, performances and competitions."
   },
   {
-    name: "SPIC MACAY",
+    name: "SPIC MACAY:",
     category: "Cultural",
     icon: "❋",
     description: "Indian classical arts, culture and heritage."
   },
   {
-    name: "Thapar Movie Club (TMC)",
+    name: "Thapar Movie Club (TMC):",
     category: "Cultural",
     icon: "▣",
     description: "Film-making and creative storytelling."
   },
   {
-    name: "Literary Society",
+    name: "Literary Society:",
     category: "Literary",
     icon: "✎",
     description: "Literature, writing, poetry and language."
   },
   {
-    name: "Thapar Model United Nations (TUMUN)",
+    name: "Thapar Model United Nations (TUMUN):",
     category: "Literary",
     icon: "◎",
     description: "Debate, diplomacy and international affairs."
   },
   {
-    name: "TU Toastmasters Club",
+    name: "TU Toastmasters Club:",
     category: "Literary",
     icon: "◉",
     description: "Public speaking, communication and leadership."
   },
   {
-    name: "ENACTUS",
+    name: "ENACTUS:",
     category: "Social",
     icon: "↗",
     description: "Entrepreneurial action and social impact."
   },
   {
-    name: "Pratigya Society",
+    name: "Pratigya Society:",
     category: "Social",
     icon: "♡",
     description: "Community welfare and educational initiatives."
   },
   {
-    name: "Paryavaran Welfare Society (PWS)",
+    name: "Paryavaran Welfare Society (PWS):",
     category: "Social",
     icon: "♧",
     description: "Environmental awareness and conservation."
   },
   {
-    name: "National Service Scheme (NSS)",
+    name: "National Service Scheme (NSS):",
     category: "Social",
     icon: "♡",
     description: "Community service and social responsibility."
   },
   {
-    name: "Adventure Club",
+    name: "Adventure Club:",
     category: "Fitness",
     icon: "△",
     description: "Outdoor activities and adventure experiences."
   },
   {
-    name: "TIET Fitness Club",
+    name: "TIET Fitness Club:",
     category: "Fitness",
     icon: "✦",
     description: "Fitness, physical activity and healthy habits."
