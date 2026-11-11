@@ -351,7 +351,7 @@ function renderEvents() {
           <div class="event-meta">
             ${escapeHTML(event.category)}
             <span>✳</span>
-            ${escapeHTML(event.date)}
+            <span>Campus event</span>
           </div>
 
           <h3>${escapeHTML(event.title)}</h3>
@@ -552,7 +552,7 @@ function renderDashboard() {
 
         return event ? {
           title: event.title,
-          subtitle: `${event.category} · Example listing`,
+          subtitle: `${event.category} · Campus Event`,
           id
         } : null;
       }).filter(Boolean)
@@ -642,7 +642,7 @@ function openEventModal(id) {
   document.getElementById("modalTitle").textContent = event.title;
 
   document.getElementById("modalDescription").textContent =
-    `${event.description} Date: ${event.date}. Venue: ${event.venue}.`;
+    event.description;
 
   updateModalSaveButton();
 
