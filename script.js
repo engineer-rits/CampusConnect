@@ -2,7 +2,7 @@
 // UNIVERSE — CAMPUS DISCOVERY WEBSITE
 // =============================================
 
-const OFFICIAL_PORTAL = "https://studentsocieties.thapar.edu/";
+
 
 // =============================================
 // 1. SAMPLE EVENT DATA
@@ -199,34 +199,6 @@ const clubs = [
     category: "Fitness",
     icon: "✦",
     description: "Fitness, physical activity and healthy habits."
-  }
-];
-
-// =============================================
-// 3. OPPORTUNITIES
-// =============================================
-
-const opportunities = [
-  {
-    icon: "♡",
-    title: "Community volunteering",
-    description: "Explore community service, educational outreach and social initiatives.",
-    link: OFFICIAL_PORTAL,
-    linkText: "Explore student organisations"
-  },
-  {
-    icon: "✧",
-    title: "Build something together",
-    description: "Find technical, creative and entrepreneurial communities to collaborate with.",
-    link: OFFICIAL_PORTAL,
-    linkText: "Discover communities"
-  },
-  {
-    icon: "♧",
-    title: "Make campus greener",
-    description: "Explore environmental awareness and sustainability activities.",
-    link: OFFICIAL_PORTAL,
-    linkText: "Find a community"
   }
 ];
 
