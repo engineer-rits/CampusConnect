@@ -473,22 +473,6 @@ document.querySelectorAll(".club-filter").forEach(button => {
 clubSearchInput.addEventListener("input", renderClubs);
 
 // =============================================
-// 8. OPPORTUNITY CARDS
-// =============================================
-
-document.getElementById("opportunityGrid").innerHTML =
-  opportunities.map(item => `
-    <article class="opportunity-card">
-      <div class="opportunity-icon">${escapeHTML(item.icon)}</div>
-      <h3>${escapeHTML(item.title)}</h3>
-      <p>${escapeHTML(item.description)}</p>
-      <a href="${item.link}" target="_blank" rel="noopener">
-        ${escapeHTML(item.linkText)} ↗
-      </a>
-    </article>
-  `).join("");
-
-// =============================================
 // 9. SAVE / REMOVE BOOKMARKS
 // =============================================
 
