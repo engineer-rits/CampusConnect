@@ -1,48 +1,202 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Find your people, discover campus events and make the most of college life.">
-  <title>UniVerse — Find your people</title><link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="UniVerse — discover campus events, societies and opportunities at TIET.">
+  <title>UniVerse — Find your place on campus</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="nav-wrap"><nav class="nav container">
-  <a class="brand" href="#"><span class="brand-mark">✳</span> Uni<span>Verse</span></a>
-  <button class="menu-toggle" aria-label="Toggle menu">☰</button>
-  <div class="nav-links"><a href="#discover">Discover</a><a href="#clubs">Clubs</a><a href="#about">About</a><a class="nav-cta" href="#events">Explore events <span>↗</span></a></div>
-</nav></header>
-<main>
-<section class="hero container">
-  <div class="hero-copy">
-    <div class="eyebrow"><span class="pulse"></span> YOUR CAMPUS, YOUR UNIVERSE</div>
-    <h1>College is better<br>when we're <em>together.</em></h1>
-    <p class="hero-text">The easiest way to find your people, discover what's happening and make every campus moment count.This website is a universe of opportunities, frienships, activities and campus experiences.</p>
-    <div class="hero-actions"><a class="btn btn-dark" href="#events">Find your next thing <span>↗</span></a><a class="text-link" href="#clubs">Meet the community <span>→</span></a></div>
-    <div class="social-proof"><div class="avatar-stack"><i>R</i><i>A</i><i>M</i><i>+</i></div><span><b>Good things happen</b><br>when students come together.</span></div>
+  <div class="nav-wrap">
+    <nav class="nav container">
+      <a class="brand" href="#home"><span class="brand-mark">✳</span>Uni<span>Verse</span></a>
+      <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      <div class="nav-links">
+        <a href="#events">Events</a>
+        <a href="#clubs">Clubs & societies</a>
+        <a href="#opportunities">Opportunities</a>
+        <a href="#dashboard">My dashboard</a>
+        <a class="nav-cta" href="#discover">Explore campus <span>↗</span></a>
+      </div>
+    </nav>
   </div>
-  <div class="hero-art">
-    <div class="sun-shape"></div><div class="art-note note-one">✦ make memories</div><div class="art-note note-two">your people are here</div>
-    <div class="poster"><div class="poster-top"><span>CAMPUS LIFE / 2026</span><span>01 — 03</span></div><div class="poster-spark">✳</div><div class="poster-title">SHOW<br>UP. <span>JOIN IN.</span></div><div class="poster-bottom"><span>MEET • MAKE • BELONG</span><span>↗</span></div></div>
-    <div class="floating-card"><span class="float-icon">♫</span><div><b>Open mic night</b><small>Friday · 5:30 PM</small></div><span class="float-arrow">↗</span></div>
+
+  <main>
+    <section class="hero container" id="home">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="pulse"></span> YOUR CAMPUS, YOUR COMMUNITY</div>
+        <h1>There's more to college than <em>classrooms.</em></h1>
+        <p class="hero-text">Find events worth showing up for, communities worth joining and opportunities waiting to be explored at TIET.</p>
+        <div class="hero-actions">
+          <a class="btn btn-dark" href="#discover">Explore UniVerse <span>↗</span></a>
+          <a class="text-link" href="#clubs">Find your people <span>→</span></a>
+        </div>
+        <div class="social-proof">
+          <div class="avatar-stack"><i>✦</i><i>♫</i><i>⌘</i><i>+</i></div>
+          <span><b>One campus. Many interests.</b><br>Find the corner that feels like yours.</span>
+        </div>
+      </div>
+      <div class="hero-art">
+        <div class="sun-shape"></div>
+        <div class="poster">
+          <div class="poster-top"><span>TIET · PATIALA</span><span>01 / 26</span></div>
+          <div>
+            <div class="poster-spark">✳</div>
+            <div class="poster-title">CAMPUS<br><span>IS</span> YOURS.</div>
+          </div>
+          <div class="poster-bottom"><span>SHOW UP.</span><span>GET INVOLVED.</span></div>
+        </div>
+        <div class="art-note note-one">Find your next thing ✦</div>
+        <div class="art-note note-two">Make campus count ↗</div>
+        <div class="floating-card">
+          <div class="float-icon">✦</div>
+          <div><b>Your campus, unlocked</b><small>Explore beyond your timetable</small></div>
+          <span class="float-arrow">↗</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="ticker"><div>DISCOVER <span>✳</span> CONNECT <span>✳</span> PARTICIPATE <span>✳</span> CREATE <span>✳</span> BELONG <span>✳</span> DISCOVER <span>✳</span> CONNECT <span>✳</span> PARTICIPATE <span>✳</span></div></div>
+
+    <section class="discover-section section container" id="discover">
+      <div class="section-heading">
+        <div class="eyebrow">YOUR CAMPUS STARTS HERE</div>
+        <h2>What are you <em>looking for?</em></h2>
+        <p>Search across campus events, societies and ways to get involved.</p>
+      </div>
+      <div class="search-wrap">
+        <span>⌕</span>
+        <input id="globalSearch" type="search" placeholder="Try 'music', 'coding', 'volunteering'..." aria-label="Search events, clubs and opportunities">
+        <button id="searchButton" class="search-button">Search</button>
+      </div>
+      <div class="quick-links">
+        <a href="#events"><span>✦</span> Campus events</a>
+        <a href="#clubs"><span>⌘</span> Clubs & societies</a>
+        <a href="#opportunities"><span>♡</span> Volunteering</a>
+        <a href="#dashboard"><span>☆</span> Saved items</a>
+      </div>
+      <p class="search-hint" id="searchHint" aria-live="polite">Search once and explore matching events, clubs and opportunities below.</p>
+    </section>
+
+    <section class="section events-section" id="events">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">HAPPENING AROUND CAMPUS</div>
+            <h2>Find your next <em>experience.</em></h2>
+          </div>
+          <span class="section-tag">EVENT EXPLORER</span>
+        </div>
+        <div class="event-controls">
+          <div class="filter-row" id="eventFilters">
+            <button class="filter active" data-filter="all">All</button>
+            <button class="filter" data-filter="culture">Culture</button>
+            <button class="filter" data-filter="learning">Learning</button>
+            <button class="filter" data-filter="fun">Fun</button>
+            <button class="filter" data-filter="community">Community</button>
+          </div>
+          <label class="sort-label">Sort
+            <select id="eventSort">
+              <option value="featured">Featured</option>
+              <option value="az">Name A–Z</option>
+            </select>
+          </label>
+        </div>
+        <div class="event-grid" id="eventGrid"></div>
+        <p class="demo-note">Event cards are illustrative examples, not confirmed TIET announcements. Check official campus channels for dates, registration and venue details.</p>
+      </div>
+    </section>
+
+    <section class="club-section" id="clubs">
+      <div class="container club-layout">
+        <div class="club-intro">
+          <div class="eyebrow">FIND YOUR COMMUNITY</div>
+          <h2>There's a place for <em>every passion.</em></h2>
+          <p class="section-copy">From technology and entrepreneurship to music, art and community work, explore student organisations at TIET.</p>
+          <a class="btn btn-light" href="https://studentsocieties.thapar.edu/" target="_blank" rel="noopener">Official student portal <span>↗</span></a>
+          <p class="club-source">Names and categories are based on TIET's official student activities listings. Check the official portal for current status and joining information.</p>
+        </div>
+        <div class="club-directory">
+          <div class="club-search">
+            <input id="clubSearch" type="search" placeholder="Search a club or interest..." aria-label="Search clubs">
+          </div>
+          <div class="club-filters" id="clubFilters">
+            <button class="club-filter active" data-club-filter="all">All</button>
+            <button class="club-filter" data-club-filter="Technical">Technical</button>
+            <button class="club-filter" data-club-filter="Cultural">Cultural</button>
+            <button class="club-filter" data-club-filter="Literary">Literary</button>
+            <button class="club-filter" data-club-filter="Social">Social</button>
+            <button class="club-filter" data-club-filter="Fitness">Fitness</button>
+          </div>
+          <div class="club-list" id="clubList"></div>
+          <p class="club-count" id="clubCount" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section opportunity-section container" id="opportunities">
+      <div class="section-heading">
+        <div class="eyebrow">MAKE AN IMPACT</div>
+        <h2>Do something that <em>matters.</em></h2>
+        <p>Campus life is also about contributing, collaborating and turning ideas into action.</p>
+      </div>
+      <div class="opportunity-grid" id="opportunityGrid"></div>
+      <p class="demo-note">These are example participation pathways. Contact the relevant TIET organisation through its official channels to confirm current opportunities.</p>
+    </section>
+
+    <section class="dashboard-section" id="dashboard">
+      <div class="container dashboard-layout">
+        <div class="dashboard-copy">
+          <div class="eyebrow">YOUR PERSONAL CAMPUS SPACE</div>
+          <h2>Keep the things you <em>love.</em></h2>
+          <p>Bookmark events, save communities and build a little list of things you want to explore.</p>
+          <p class="storage-note">Your saved items stay in this browser on this device.</p>
+        </div>
+        <div class="dashboard-panel">
+          <div class="dashboard-top">
+            <div><span class="mini-label">MY UNIVERSE</span><h3>Your saved space</h3></div>
+            <span class="saved-count" id="savedCount">0 saved</span>
+          </div>
+          <div class="dashboard-tabs">
+            <button class="dash-tab active" data-dash-tab="events">Events <span id="savedEventCount">0</span></button>
+            <button class="dash-tab" data-dash-tab="clubs">Clubs <span id="savedClubCount">0</span></button>
+          </div>
+          <div class="saved-list" id="savedList"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bottom-cta container">
+      <div><div class="eyebrow">YOUR STORY, YOUR CAMPUS</div><h2>Don't just attend college.<br><em>Be part of it.</em></h2></div>
+      <a class="btn btn-dark" href="#discover">Start exploring <span>↗</span></a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <a class="brand" href="#home"><span class="brand-mark">✳</span>Uni<span>Verse</span></a>
+      <span>Made for campus life at TIET, Patiala.</span>
+      <a href="https://studentsocieties.thapar.edu/" target="_blank" rel="noopener">Official student activities ↗</a>
+      <span>© 2026 UniVerse · Student project prototype</span>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="modal-backdrop" id="eventModal" aria-hidden="true">
+    <div class="event-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="modalClose" aria-label="Close details">×</button>
+      <span class="mini-label" id="modalCategory">EVENT DETAILS</span>
+      <h2 id="modalTitle">Event title</h2>
+      <p id="modalDescription"></p>
+      <p class="modal-disclaimer">This is an illustrative event card. Confirm all event information through official TIET announcements.</p>
+      <button class="btn btn-dark" id="modalSave">Save event <span>☆</span></button>
+    </div>
   </div>
-</section>
-<section class="ticker"><div>FIND YOUR PEOPLE <span>✳</span> TRY SOMETHING NEW <span>✳</span> MAKE CAMPUS YOURS <span>✳</span> FIND YOUR PEOPLE <span>✳</span> TRY SOMETHING NEW <span>✳</span></div></section>
-<section class="section container" id="events">
-  <div class="section-head"><div><div class="eyebrow">WHAT'S HAPPENING</div><h2>Your next <em>favourite</em> memory.</h2></div><a class="text-link" href="#discover">See everything ↗</a></div>
-  <div class="filter-row" id="event-filters"><button class="filter active" data-filter="all">All events</button><button class="filter" data-filter="culture">Culture</button><button class="filter" data-filter="learning">Learning</button><button class="filter" data-filter="fun">Just for fun</button></div>
-  <div class="event-grid">
-    <article class="event-card" data-category="culture"><div class="event-art art-pink"><span class="event-date">21 NOV <b>SAT</b></span><div class="event-graphic">✺</div><span class="art-label">CULTURE / COMMUNITY</span></div><div class="event-info"><div class="event-meta">05:30 PM <span>•</span> Main Auditorium</div><h3>Ruhaniyat</h3><p>Bring a song, a poem, or just your loudest applause.</p><button class="event-link" data-event="Campus Open Mic">I'm interested <span>↗</span></button></div></article>
-    <article class="event-card" data-category="learning"><div class="event-art art-blue"><span class="event-date">20 NOV <b>FRI</b></span><div class="event-graphic">✳</div><span class="art-label">LEARNING / IDEAS</span></div><div class="event-info"><div class="event-meta">11:00 AM <span>•</span> OAT</div><h3>Robowars</h3><p>A showcase of robots sparring with each other.</p><button class="event-link" data-event="Ideas to Impact">I'm interested <span>↗</span></button></div></article>
-    <article class="event-card" data-category="fun"><div class="event-art art-yellow"><span class="event-date">22 NOV <b>SUN</b></span><div class="event-graphic">☻</div><span class="art-label">FUN / FRIENDSHIP</span></div><div class="event-info"><div class="event-meta">04:00 PM <span>•</span> Library</div><h3>Readathon</h3><p>Less scrolling, more reading. Come read with us.</p><button class="event-link" data-event="The Big Board Game">I'm interested <span>↗</span></button></div></article>
-</section>
-<section class="club-section" id="clubs"><div class="container club-layout"><div><div class="eyebrow">THERE'S A PLACE FOR YOU</div><h2>Curious about<br>something? <em>Follow it.</em></h2><p class="section-copy">You don't need to have it all figured out. Start with one interest and see where it takes you.</p><a class="btn btn-light" href="#discover">Explore communities ↗</a></div><div class="club-list">
-  <div class="club-item"><span class="club-icon">✎</span><div><b>FAPS</b><small>Art · Design · Photography</small></div><span class="club-count">01</span></div>
-  <div class="club-item"><span class="club-icon">⌘</span><div><b>OWASP</b><small>Coding · Robotics · Ideas</small></div><span class="club-count">02</span></div>
-  <div class="club-item"><span class="club-icon">♫</span><div><b>MUDRA</b><small>Music · Dance · Theatre</small></div><span class="club-count">03</span></div>
-  <div class="club-item"><span class="club-icon">♧</span><div><b>YOUTH UNITED</b><small>Environment · Volunteering</small></div><span class="club-count">04</span></div>
-</div></div></section>
-<section class="bottom-cta container" id="about"><div><div class="eyebrow">A CAMPUS THAT FEELS LIKE YOURS</div><h2>There's more to college<br>than the <em>classroom.</em></h2></div><a class="btn btn-dark" href="#events">Start exploring ↗</a></section>
-</main>
-<footer><div class="container footer-inner"><a class="brand" href="#"><span class="brand-mark">✳</span> Uni<span>Verse</span></a><span>Made for students, powered by community.</span><span>© 2026 UniVerse</span></div></footer>
-<div class="toast" role="status" aria-live="polite"></div><script src="script.js"></script>
-</body></html>
+  <script src="script.js"></script>
+</body>
+</html>
