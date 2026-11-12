@@ -1,4 +1,4 @@
-# CampusConnect
+# UniVerse
 
 A standalone, responsive front-end website built with HTML, CSS and vanilla JavaScript.
 
